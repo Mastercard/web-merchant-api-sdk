@@ -1,1 +1,1 @@
-# web-merchant-api-sdk
+# Web-merchant-api-sdk
