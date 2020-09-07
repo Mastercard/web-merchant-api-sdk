@@ -1,0 +1,113 @@
+/**  Copyright (c) 2020 Mastercard
+ 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+ 
+    http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ 
+*/
+
+	
+	
+$(document).ready(function() {
+		
+		var invokeSbiCfiApi= function () {
+		// Web MErchant API function to get the CFI details. 
+		zappMerchantApi.getCfiDetails.then(function(result) {
+            //Promise is resolved, use the zappMerchantApi objects to display the bank details. Two zappMerchantApi objects are:
+
+			//	1.	zappMerchantApi.cfiDetail – This object contains the list of banks with the following details.
+			//	i.	cfiLogo: "https://cdn/..../bankName-bank.png"
+			//	ii.	cfiName: "Bank name"
+			//	iii.	cfiUniqueId: "Bank Unique Id"
+				 
+			//	2.	zappMerchantApi.cfiCount – It contains the number of banks present in the CDN file 
+
+            console.log(result);
+			merchantFunctionToRenderBankLogos(); //
+            
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+	};
+	
+	merchantFunctionToRenderBankLogos();
+	
+});
+
+
+merchantFunctionToRenderBankLogos = function(){
+		for(i=0;i<zappMerchantApi.cfiCount;i++)
+		{
+			$("#merchantBankListContainer").append('<li><img src="'+
+					zappMerchantApi.cfiDetail[i].cfiLogo+'" alt="'+zappMerchantApi.cfiDetail[i].cfiName+
+					'"><span><p>'+zappMerchantApi.cfiDetail[i].cfiName+
+					'</p> <span>Bank Account</span></span><a id="'+zappMerchantApi.cfiDetail[i].cfiUniqueId+
+					'" href="#" onclick=submitRFP('+zappMerchantApi.cfiDetail[i].cfiUniqueId+')>Select</a></li>');		
+		}
+}; 
+
+
+function merchantFunctionToInvokeGetCFIDEtailsApi(bankId) {
+	var cfiID = bankId.id; // This must contain the CFI Unique id of the selected bank
+	var response = '';
+	var merchantRequestForPayPostData = {
+		// Merchant Request for Payment Post Data 
+	};
+	
+	jQuery.ajax({
+		url : MerchantRequestToPayPostOrder, ", //The merchant URL to post the Request for Payment
+		dataType : "json",
+		contentType : "application/json; charset=UTF-8",
+		type : "put",
+		async: false, 	// Keep it as it is
+		data : JSON.stringify(merchantRequestForPayPostData),
+		crossDomain : true,
+		success : function(merchantRequestForPaymentResponseObject) {
+			ajaxFlag = true; // flag to indicate that ajax call is completed successfully
+			 response = {
+				success : true,
+				aptrId : merchantRequestForPaymentResponseObject.aptrId,
+				//other details
+			};				
+		},
+		error : function(merchantRequestForPaymentResponseObject) {
+			// Merchant specific code to handle error
+		}
+	});
+	
+	// If the ajaxFlag is true then zappMerchantApi.invokeApp function is invoked.
+	
+	if (ajaxFlag == true){
+		//Web Merchant API function to invoke Bank APP
+		zappMerchantApi.invokeApp(cfiID, response.aptrId, 'PBA-RFP');  // These three parameters are required for opening the bank app
+	 }
+
+}
+
+function listener(event) {
+	var evData =event.data;
+	// Check for zappMerchantApiError event for the Error details
+	// event.data contains the Error object with the following information
+	// 		errorDesc
+	//		errorId
+	//		errorTimestamp
+	
+	if(evData.eventType == "zappMerchantApiError" ){
+		console.log(evData.data); // Merchant specific code to handle the errors
+	}	
+}
+
+if(window.addEventListener){
+	 addEventListener("message", listener, false)
+} else {
+	 attachEvent("onmessage", listener)
+} 
