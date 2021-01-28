@@ -45,45 +45,53 @@ The Web Merchant API enables the merchant to get information about the CFIs supp
 
 ### Flow diagram
 
- 
+ //insert diagram here
 Figure 1: Flow diagram of user journey 
 
 User Journey
 
- 
+//insert screen shot
+
 Figure 2: User journey 
 
-User journey steps:
-	User on merchant website selects a CFI during an invoice presentment.
-	CFI app is launched with Account details. User confirms the payment on the CFI App.
-	User is presented the Order confirmation on the CFI App.
-	User is redirected back to the success page on Merchant website on successful payment.
+#### User journey steps:
+    • User on merchant website selects a CFI during an invoice presentment.
+    • CFI app is launched with Account details. User confirms the payment on the CFI App.
+    • User is presented the Order confirmation on the CFI App.
+    • User is redirected back to the success page on Merchant website on successful payment.
 
-Certified Browsers and Devices
+### Certified Browsers and Devices
 Zapp has certified the Web Merchant API SDK to work with the following browsers and respective devices:
-	Operating System/ Browser	OS Version	Comments
-Mobile (iOS)			
- iPhone X	Chrome, Safari, Firefox	13.6.1	
-iPhone 6	Safari and Chrome	12.4	
-iPhone 6S Plus	Safari and Chrome	13.3	
+
+|	| Operating System/ Browser | OS Version | Comments |
+|-------|---------------------------| -----------| -------- |
+|Mobile (iOS)			                            |
+| iPhone X |	Chrome, Safari, Firefox|13.6.1	|           |
+|iPhone 6 |	Safari and Chrome |	12.4	|           |
+|iPhone 6S Plus| Safari and Chrome |	13.3	|           |
+
 Table 1: 	Certified Browsers and devices
 
-Sequence Diagram
-
+### Sequence Diagram
+// Insert sequence diagram
  
 Figure 3: 	Sequence diagram 
-Technical overview
-Introduction
+
+# Technical overview
+### Introduction
 This chapter provides instructions on the implementation of the Web Merchant API SDK.
-Pre- requisites
+### Pre- requisites
 Please ensure that the Mastercard process of distributor/merchant on boarding has been completed.
-Availability of Web Merchant API SDK
+### Availability of Web Merchant API SDK
 After completing the on boarding with Mastercard, download the Web Merchant API SDK from the below location.
  [Placeholder for github location ]
-File Name / Version	Hosted On	Version	Download Location
-Web_merchant_api.zip		1.0.0	
+|File Name / Version |	Hosted On |  Version   | Download Location |
+|--------------------|------------| -----------| ----------------- |
+|Web_merchant_api.zip |		  | 1.0.0      |                   |
+
 Table 2: 	Web Merchant API SDK Library download location
-Folder Components
+
+### Folder Components
 The Web Merchant API SDK is a JavaScript based product. It consists of a JavaScript file and a template file in a folder. 
 The overall folder structure is represented in Figure below and contains:
 1.	A versioned zapp-merchant-api-artefact-1.0.0.js file.
@@ -93,23 +101,36 @@ The overall folder structure is represented in Figure below and contains:
 5.	A README.md file which contains a brief description about the SDK.
 6.	A CHANGELOG.md file which contains a curated, chronologically ordered list of notable changes for each version of a project.
 
- 
+
+//Insert web merchant api figuare
+
 Figure 4:	Web Merchant API SDK folder structure 
 
-Guidelines to Integrate the Web Merchant API 
-General requirements
+ ## Guidelines to Integrate the Web Merchant API 
+ ### General requirements
 The following table shows the general requirements to setup the Web Merchant API SDK.
-Component	Version
-JQuery	3.5.1
+
+|Component |                                    	Version                   |
+|----------|----------------------------------------------------------------------|
+| JQuery   |	3.5.1                                                             |
+
 Table 3: 	Web Merchant API SDK – Setup requirements
+
 JQuery is used by the Web Merchant API SDK to perform various operations. It should be the first script to be imported in the project. JQuery can be included by printing the following HTML script tag in the parent HTML page in the header section:
+
+```javascript
 <head>
 …
 <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 …
 </head>
+```
+
 This will import the JQuery plugins in to the project.
-Note	This version of JQuery is the current certified version for Web Merchant API functioning on the supported browsers and devices. Support for the latest version of JQuery is on the Web Merchant API Product Roadmap and will be considered for future releases of this SDK.
+
+Note: 
+> This version of JQuery is the current certified version for Web Merchant API functioning on the supported browsers and devices. Support for the latest version of JQuery is on the Web Merchant API Product Roadmap and will be considered for future releases of this SDK.
+ 
 Integration Steps
 Follow the below mentioned steps to include the Web Merchant API in the Merchant website.
 1.	Extract the Web_merchant_api.zip and add the zapp-merchant-api-artefact-1.0.0.js in the project.
