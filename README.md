@@ -47,13 +47,13 @@ The Web Merchant API is a web library that enables a merchant/distributor to ena
 The Web Merchant API enables the merchant to get information about the CFIs supported by Mastercard for PBA-RFP. This CFI information can be used by the merchant to display supported CFIs on their website during an invoice presentment. A consumer can see the available banks and select and launch a CFI he wants to pay with. 
 
 ### Flow Diagram
+<img src="https://user-images.githubusercontent.com/51792552/106197173-467f1400-61aa-11eb-8dc9-a35004949540.png" width="552" height="568"/>
 
- //insert diagram here
 ##### Figure 1: Flow diagram of user journey 
 
 ### User Journey
 
-//insert screen shot
+<img src="https://user-images.githubusercontent.com/51792552/106196037-db810d80-61a8-11eb-91ef-06c44804ebb5.png" width="1050" height="400"/>
 
 ##### Figure 2: User journey 
 
@@ -75,8 +75,9 @@ Zapp has certified the Web Merchant API SDK to work with the following browsers 
 ##### Table 1: 	Certified Browsers and devices
 
 ### Sequence Diagram
-// Insert sequence diagram
- 
+
+![sequence](https://user-images.githubusercontent.com/51792552/106197177-4717aa80-61aa-11eb-823b-09550b5d9802.png)
+
 ##### Figure 3: 	Sequence diagram 
 
 ## Technical overview
@@ -106,8 +107,7 @@ The overall folder structure is represented in Figure below and contains:
 5. A README.md file which contains a brief description about the SDK.
 6. A CHANGELOG.md file which contains a curated, chronologically ordered list of notable changes for each version of a project.
 
-
-//Insert web merchant api figuare
+![image](https://user-images.githubusercontent.com/51792552/106197084-251e2800-61aa-11eb-9333-fe6690447349.png)
 
 ##### Figure 4:	Web Merchant API SDK folder structure 
 
