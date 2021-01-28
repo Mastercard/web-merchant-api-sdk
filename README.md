@@ -1,4 +1,5 @@
 
+# Web Merchant API 
 
 ### Document History
 
@@ -15,7 +16,7 @@
   - [Introduction](#functional-overview)
   - [Flow Diagram](#flow-diagram)
   - [User Journey](#user-journey)
-  - [Certified Browsers and Devices](#certified-browsers-anddevices)
+  - [Certified Browsers and Devices](#certified-browsers-and-devices)
   - [Sequence Diagram](#sequence-diagram)
 - [Technical overview](#technical-overview)
   - [Introduction](#technical-overview)
@@ -32,38 +33,38 @@
   - [Error Codes](#error-codes)
 - [Troubleshooting](#troubleshooting)
 
-# About this document
-## Introduction
+## About this document
+### Introduction
 This document describes the Merchant API SDK for Web. The SDK is provided by Zapp and is ready to implement. 
-## Audience
+### Audience
 This document is intended to be used by external Participants to support the implementation and subsequent use of the Web Merchant API.
-## Scope
+### Scope
 The scope of this document covers integration and implementation of the Web Merchant API
  
-# Functional overview
-## Introduction
+## Functional overview
+### Introduction
 The Web Merchant API is a web library that enables a merchant/distributor to enable payments through a consumer selected CFI on a single device.
 
 The Web Merchant API enables the merchant to get information about the CFIs supported by Mastercard for PBA-RFP. This CFI information can be used by the merchant to display supported CFIs on their website during an invoice presentment. A consumer can see the available banks and select and launch a CFI he wants to pay with. 
 
-## Flow Diagram
+### Flow Diagram
 
  //insert diagram here
-Figure 1: Flow diagram of user journey 
+##### Figure 1: Flow diagram of user journey 
 
-## User Journey
+### User Journey
 
 //insert screen shot
 
-Figure 2: User journey 
+##### Figure 2: User journey 
 
-#### User journey steps:
-    • User on merchant website selects a CFI during an invoice presentment.
-    • CFI app is launched with Account details. User confirms the payment on the CFI App.
-    • User is presented the Order confirmation on the CFI App.
-    • User is redirected back to the success page on Merchant website on successful payment.
+##### User journey steps:
+ 1. User on merchant website selects a CFI during an invoice presentment.
+ 2. CFI app is launched with Account details. User confirms the payment on the CFI App.
+ 3. User is presented the Order confirmation on the CFI App.
+ 4. User is redirected back to the success page on Merchant website on successful payment.
 
-## Certified Browsers and Devices
+### Certified Browsers and Devices
 Zapp has certified the Web Merchant API SDK to work with the following browsers and respective devices:
 
 |Mobile (iOS)	| Operating System/ Browser | OS Version | Comments |
@@ -72,19 +73,19 @@ Zapp has certified the Web Merchant API SDK to work with the following browsers 
 |iPhone 6 |	Safari and Chrome |	12.4	|           |
 |iPhone 6S Plus| Safari and Chrome |	13.3	|           |
 
-Table 1: 	Certified Browsers and devices
+##### Table 1: 	Certified Browsers and devices
 
-## Sequence Diagram
+### Sequence Diagram
 // Insert sequence diagram
  
-Figure 3: 	Sequence diagram 
+##### Figure 3: 	Sequence diagram 
 
-# Technical overview
-## Introduction
+## Technical overview
+### Introduction
 This chapter provides instructions on the implementation of the Web Merchant API SDK.
-## Pre- requisites
+### Pre- requisites
 Please ensure that the Mastercard process of distributor/merchant on boarding has been completed.
-## Availability of Web Merchant API SDK
+### Availability of Web Merchant API SDK
 After completing the on boarding with Mastercard, download the Web Merchant API SDK from the below location.
  [Placeholder for github location ]
  
@@ -92,9 +93,9 @@ After completing the on boarding with Mastercard, download the Web Merchant API 
 |--------------------|------------| -----------| ----------------- |
 |Web_merchant_api.zip |		  | 1.0.0      |                   |
 
-Table 2: 	Web Merchant API SDK Library download location
+##### Table 2: 	Web Merchant API SDK Library download location
 
-## Folder Components
+### Folder Components
 The Web Merchant API SDK is a JavaScript based product. It consists of a JavaScript file and a template file in a folder. 
 The overall folder structure is represented in Figure below and contains:
 1. A versioned **zapp-merchant-api-artefact-1.0.0.js** file.
@@ -107,24 +108,24 @@ The overall folder structure is represented in Figure below and contains:
 
 //Insert web merchant api figuare
 
-Figure 4:	Web Merchant API SDK folder structure 
+##### Figure 4:	Web Merchant API SDK folder structure 
 
-## Guidelines to Integrate the Web Merchant API 
-### General requirements
+### Guidelines to Integrate the Web Merchant API 
+#### General requirements
 The following table shows the general requirements to setup the Web Merchant API SDK.
 
 |Component |                                    	Version                   |
 |----------|----------------------------------------------------------------------|
 | JQuery   |	3.5.1                                                             |
 
-Table 3: 	Web Merchant API SDK – Setup requirements
+##### Table 3: 	Web Merchant API SDK – Setup requirements
 
 JQuery is used by the Web Merchant API SDK to perform various operations. It should be the first script to be imported in the project. JQuery can be included by printing the following HTML script tag in the parent HTML page in the header section:
 
 ```javascript
 <head>
 …
-<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 …
 </head>
 ```
@@ -133,7 +134,7 @@ This will import the JQuery plugins in to the project.
 
 **Note:** This version of JQuery is the current certified version for Web Merchant API functioning on the supported browsers and devices. Support for the latest version of JQuery is on the Web Merchant API Product Roadmap and will be considered for future releases of this SDK.
  
-### Integration Steps
+#### Integration Steps
 Follow the below mentioned steps to include the Web Merchant API in the Merchant website.
 1. Extract the Web_merchant_api.zip and add the **zapp-merchant-api-artefact-1.0.0.js** in the project.
 2. Import the JavaScript library zapp-merchant-api-artefact-1.0.0.js in the parent page where the bank list needs to be displayed by adding the script tag in the html page.
@@ -148,12 +149,12 @@ Follow the below mentioned steps to include the Web Merchant API in the Merchant
 </html>
 ```
  
-## Web Merchant API Interface
+### Web Merchant API Interface
 The Web Merchant API SDK interface exposes the following functions to be integration by the merchant. 
 1. **getCfiDetails**: This function retrieves the list of supported CFIs for PBA-RFP by Mastercard. This list contains the names, the logo and the unique id assigned to the CFI by Zapp. 
 2. **invokeApp**: This function is used to invoke the consumer selected banking app using the unique universal link for the CFI.
 
-### Implementation Steps 
+#### Implementation Steps 
 Use the following steps to invoke the SDK’s API in the Merchant website.
 
 - Invoke the **zappMerchantApi.getCfiDetails** function in the merchant website specific external js file used on the page where bank list is to be displayed. This function returns a promise with a value true when resolved, merchant can then use the **zappMerchantApi.cfiDetails** object to display the bank list with additional bank information like name and logo on their page. This function must be invoked as soon as the page's Document Object Model (DOM) becomes ready.
@@ -164,16 +165,17 @@ Use the following steps to invoke the SDK’s API in the Merchant website.
 $(document).ready(function() {
 	
 	var merchantFunctionToInvokeGetCFIDEtailsApi= function () {
-        	**zappMerchantApi.getCfiDetails**.then(function(result) {
+        	zappMerchantApi.getCfiDetails.then(function(result) {
 
-	//Promise is resolved, use the zappMerchantApi objects to display the bank details. Two 	zappMerchantApi objects are:
+	/* Promise is resolved, use the zappMerchantApi objects to display the bank details. <br>Two zappMerchantApi objects are:
 
 	1. zappMerchantApi.cfiDetails – A list of banks with the following details.
 		i. cfiLogo: "https://cdn/..../bankName-bank.png"
 		ii. cfiName: "Bank name"
 		iii. cfiUniqueId: "Bank Unique Id"
  
-	2. zappMerchantApi.cfiCount – Total number of banks
+	2. zappMerchantApi.cfiCount – Total number of banks */
+	
 	})
         .catch(function (error) {
 		// Merchant specific code
@@ -200,9 +202,9 @@ Sample **zappMerchantApi.cfiDetails** object which contains information of four 
 ```javascript
 function paymentRequestToMechantServer(clickedBtn) {
 
-// Merchant’s logic to invoke the Submit RFP API. After successful response AptrId is received by merchant. Use the same as one of the parameter to invoke the zappMerchantApi.invokeApp function. 
+// Merchant’s logic to invoke the Submit RFP API. After successful response AptrId is received by merchant. <br>Use the same as one of the parameter to invoke the zappMerchantApi.invokeApp function. 
 
-	**zappMerchantApi.invokeApp**(cfiUniqueId, aptrId, 'PBA-RFP'); 
+	zappMerchantApi.invokeApp(cfiUniqueId, aptrId, 'PBA-RFP'); 
 				
 }
 ```
@@ -220,8 +222,8 @@ function listener(event) {
 }
 ```
 
-# Appendices
-## Template file
+## Appendices
+### Template file
 The **zapp-merchant-api-externalJs.template** file contains the sample code to demonstrate the use of the Web Merchant API SDK.  This code also depicts the implementation of the custom method to post payment request to the Merchant Server. This file resides in the Web Merchant API SDK folder along with the zapp-merchant-api-artefact-1.0.0.js file.
 **Note**	Any data elements and comments in Italic are a Merchant specific data element which must be provided by the Merchant.
 **Assumption**	This is the JS file used on the Merchant’s website.
@@ -234,15 +236,15 @@ $(document).ready(function() {
 		
 		var invokeSbiCfiApi= function () {
 		// Web Merchant API function to get the bank details. 
-		**zappMerchantApi.getCfiDetails**.then(function(result) {
-            //Promise is resolved, use the zappMerchantApi objects to display the bank details. Two zappMerchantApi objects are:
+		zappMerchantApi.getCfiDetails.then(function(result) {
+            /*Promise is resolved, use the zappMerchantApi objects to display the bank details.<br>Two zappMerchantApi objects are:
 
-		//	1.	zappMerchantApi.cfiDetails – This object contains the list of banks with the following details.
-		//	i.	cfiLogo: "https://cdn/..../bankName-bank.png"
-		//	ii.	cfiName: "Bank name"
-		//	iii.	cfiUniqueId: "Bank Unique Id"
+		1. zappMerchantApi.cfiDetails – This object contains the list of banks with the following details.
+		   i.	 cfiLogo: "https://cdn/..../bankName-bank.png"
+		  ii.	 cfiName: "Bank name"
+		  iii. cfiUniqueId: "Bank Unique Id"
 				 
-		//	2.	zappMerchantApi.cfiCount – It contains the number of banks present in the CDN file 
+		2. zappMerchantApi.cfiCount – It contains the number of banks present in the CDN file */
 
 		merchantFunctionToRenderBankLogos(); //
             
@@ -256,14 +258,14 @@ $(document).ready(function() {
 
 // Merchant specific implementation. 
 merchantFunctionToRenderBankLogos = function(){
-		for(i=0;i<**zappMerchantApi.cfiCount**;i++)
-		{
-			$("#merchantBankListContainer").append('<li><img src="'+
-					**zappMerchantApi.cfiDetails[i].cfiLogo**+'" alt="'+**zappMerchantApi.cfiDetails[i].cfiName**+
-					'"><span><p>'+**zappMerchantApi.cfiDetails[i].cfiName**+
-					'</p> <span>Bank Account</span></span><a id="'+**zappMerchantApi.cfiDetails[i].cfiUniqueId**+
-					'" href="#" onclick=submitRFP('+**zappMerchantApi.cfiDetails[i].cfiUniqueId**+')>Select</a></li>');		
-		}
+	for(i=0;i<zappMerchantApi.cfiCount;i++)
+	{
+	$("#merchantBankListContainer").append('<li><img src="'+
+		zappMerchantApi.cfiDetails[i].cfiLogo+'" alt="'+zappMerchantApi.cfiDetails[i].cfiName+
+		'"><span><p>'+zappMerchantApi.cfiDetails[i].cfiName+
+		'</p> <span>Bank Account</span></span><a id="'+zappMerchantApi.cfiDetails[i].cfiUniqueId+
+		'" href="#" onclick=submitRFP('+zappMerchantApi.cfiDetails[i].cfiUniqueId+')>Select</a></li>');		
+	}
 }; 
 
 function merchantFunctionToInvokeGetCFIDEtailsApi(bankId) {
@@ -297,8 +299,8 @@ function merchantFunctionToInvokeGetCFIDEtailsApi(bankId) {
 	// If the ajaxFlag is true then zappMerchantApi.invokeApp function is invoked.
 	
 	if (ajaxFlag == true){
-		//Web Merchant API function to invoke Bank APP
-		**zappMerchantApi.invokeApp**(cfiID, response.aptrId, '**PBA-RFP**');  // These three parameters are required for opening the bank app
+		//Web Merchant API function to invoke Bank APP. These three parameters are required for opening the bank app
+		zappMerchantApi.invokeApp(cfiID, response.aptrId, 'PBA-RFP');  
 	 }
 }
 
@@ -310,7 +312,7 @@ function listener(event) {
 	//		errorId
 	//		errorTimestamp
 	
-	if(evData.eventType == "**zappMerchantApiError**" ){
+	if(evData.eventType == "zappMerchantApiError" ){
 		console.log(evData.data); // Merchant specific code to handle the errors
 	}	
 }
@@ -324,7 +326,7 @@ if(window.addEventListener){
 
 
 
-## Error Codes
+### Error Codes
 The Web Merchant API SDK captures the error while executing the **zappMerchantApi.getCfiDetails** and **zappMerchantApi.invokeApp** functions. The SDK returns and event with the error Id, error description and a timestamp. Below mentioned table describes all the Error Codes defined in SDK.
 Sample error object:
 
@@ -337,20 +339,20 @@ zappMerchantApiError:{
 
 Error codes|Error description|Cause of the error
 -----------|-----------------|------------------
-S1001|CFI Id is undefined|When **zappMerchantApi.invokeApp** function is invoked without CFI Id.<br>Example: **zappMerchantApi.invokeApp(undefined,aptrId,’PBA-RFP’)**|
-S1002|AptrId is undefined|When **zappMerchantApi.invokeApp** function is invoked without AptrId.<br>Example: **zappMerchantApi.invokeApp(cfiId,undefined,’PBA-RFP’)**
-S1003|Product Type is undefined|When **zappMerchantApi.invokeApp** function is invoked without product type.<br>Example: **zappMerchantApi.invokeApp(cfiId,aptrId,undefined)**
-S1004|CFI Id is null or empty|When **zappMerchantApi.invokeApp** function is invoked with empty CFI Id or with null value.<br>Example: **zappMerchantApi.invokeApp(‘’,aptrId,’PBA-RFP’)**<br>Or<br>**zappMerchantApi.invokeApp(null,aptrId,’PBA-RFP’)**
-S1005|AptrId is null or empty|When **zappMerchantApi.invokeApp** function is invoked with empty Aptr Id or with null value.<br>Example: **zappMerchantApi.invokeApp(cfiId,’’,’PBA-RFP’)**<br>Or<br>**zappMerchantApi.invokeApp(cfiId,null,’PBA-RFP’)**
-S1006|Product Tpye is null or empty|When **zappMerchantApi.invokeApp** function is invoked with empty productType or with null value.<br>Example: **zappMerchantApi.invokeApp(cfiId, aptrId,’’)**<br>Or<br>**zappMerchantApi.invokeApp(cfiId, aptrId,null)**
+S1001|CFI Id is undefined|When **zappMerchantApi.invokeApp** function is invoked without CFI Id.<br><br>Example: **zappMerchantApi.invokeApp(undefined,aptrId,’PBA-RFP’)**|
+S1002|AptrId is undefined|When **zappMerchantApi.invokeApp** function is invoked without AptrId.<br><br>Example: **zappMerchantApi.invokeApp(cfiId,undefined,’PBA-RFP’)**
+S1003|Product Type is undefined|When **zappMerchantApi.invokeApp** function is invoked without product type.<br><br>Example: **zappMerchantApi.invokeApp(cfiId,aptrId,undefined)**
+S1004|CFI Id is null or empty|When **zappMerchantApi.invokeApp** function is invoked with empty CFI Id or with null value.<br><br>Example: **zappMerchantApi.invokeApp(‘’,aptrId,’PBA-RFP’)**<br>Or<br>**zappMerchantApi.invokeApp(null,aptrId,’PBA-RFP’)**
+S1005|AptrId is null or empty|When **zappMerchantApi.invokeApp** function is invoked with empty Aptr Id or with null value.<br><br>Example: **zappMerchantApi.invokeApp(cfiId,’’,’PBA-RFP’)**<br>Or<br>**zappMerchantApi.invokeApp(cfiId,null,’PBA-RFP’)**
+S1006|Product Tpye is null or empty|When **zappMerchantApi.invokeApp** function is invoked with empty productType or with null value.<br><br>Example: **zappMerchantApi.invokeApp(cfiId, aptrId,’’)**<br>Or<br>**zappMerchantApi.invokeApp(cfiId, aptrId,null)**
 S1007|No data present for CFI Id|When **zappMerchantApi.invokeApp** function is invoked with empty productType or with null value.
 S9997|Unknown error has occured|When an unknown error occurs while invoking the **zappMerchantApi.invokeApp** function
 S9998|An error has occurred while reading the JSON file.<br> Error Type: errTyp . Error Text: errTxt|When **zappMerchantApi.getCfiDetails** function is invoked and an error occurs. 
 S9999|An unknown error has occurred|When an unknown error occurs while invoking the **zappMerchantApi.getCfiDetails** function
 
 ##### Table 4: 	Web Merchant API SDK – Error Codes
-
-# Troubleshooting
+---
+## Troubleshooting
 This section covers the different troubleshooting scenarios and the behaviour of the Web Merchant API. 
 1. For the SDK to work as expected the default browser settings should allow pop ups to open on the mobile device.
 2. If merchant is using jquery ajax call to invoke Submit RFP then merchant must wait for the ajax call to complete to invoke the **zappMerchantApi.invokeApp** function of the SDK. Alternatively merchant can use the async: false parameter when making an ajax call. Refer the template file in the SDK for an example.
