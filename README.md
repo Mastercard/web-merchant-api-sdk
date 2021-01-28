@@ -1,83 +1,49 @@
 
 
+### Document History
 
+| Version  | Date      | Summary of Changes |
+| ---------| ----------| -------------------|
+|    1.0   | 19-08-2020| Inital Draft       |
 
+## Contents
+- [About this document](#aboutDocument)
+  - [Introduction](#Introduction)
+  - [Audience](#Audience)
+  - [Scope](#scope)
+- [Functional overview](#FunctionalOverview)
+  - [Introduction](#FIntroduction)
+  - [Sequence Diagram](#FIntroduction)
+- [Technical overview](#FunctionalOverview)
+  - [Introduction](#FIntroduction)
+  - [Certified Browsers and Devices](#FIntroduction)
+  - [Download](#FIntroduction)
+  - [Folder Components](#FIntroduction)
+  - [Technical requirements](#FIntroduction)
+    - [General requirements](#FIntroduction)
+  - [Integration of Web Merchant](#FIntroduction)
+  - [Web Merchant API Setup](#FIntroduction)
+    - [Implementation Steps](#FIntroduction)
+- [Appendices](#FunctionalOverview)
+  - [Template file](#FIntroduction)
+  - [Error Codes](#FIntroduction)
+- [Troubleshooting](#FunctionalOverview)
 
-
-
-Web Merchant API 
-Implementation Guide
-August 2020
-Version 1.0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-Copyright statement
-The information contained in this document is confidential and proprietary to Vocalink Limited, its successors or assignees and (if applicable) its prospective or actual customers/partners. The copyright in this document is owned by Vocalink Limited, or its successors or assignees. This document shall not be used, disclosed or copied in whole or in part for any purposes without the express permission of the owner.
-© Vocalink Limited 2017. All rights reserved
-
-
-
-
- 
-Document History
-Version	Date	Summary of Changes
-1.0	18-08-2020	Initial Draft
-Contents
-About this document	5
-Introduction	5
-Audience	5
-Scope	5
-Functional overview	6
-Introduction	6
-Sequence Diagram	7
-Technical overview	8
-Introduction	8
-Certified Browsers and Devices	8
-Download	8
-Folder Components	8
-Technical requirements	9
-General requirements	9
-Integration of Web Merchant API	10
-Web Merchant API Setup	10
-Implementation Steps	10
-Appendices	13
-Template file	13
-Error Codes	15
-Troubleshooting	16
-About this document
-Introduction
+# About this document
+### Introduction
 This document describes the Merchant API SDK for Web. The SDK is provided by Zapp and is ready to implement. 
-Audience
+### Audience
 This document is intended to be used by external Participants to support the implementation and subsequent use of the Web Merchant API.
-Scope
+### Scope
 The scope of this document covers integration and implementation of the Web Merchant API
  
-Functional overview
-Introduction
+# Functional overview
+### Introduction
 The Web Merchant API is a web library that enables a merchant/distributor to enable payments through a consumer selected CFI on a single device.
+
 The Web Merchant API enables the merchant to get information about the CFIs supported by Mastercard for PBA-RFP. This CFI information can be used by the merchant to display supported CFIs on their website during an invoice presentment. A consumer can see the available banks and select and launch a CFI he wants to pay with. 
 
-Flow diagram
+### Flow diagram
 
  
 Figure 1: Flow diagram of user journey 
