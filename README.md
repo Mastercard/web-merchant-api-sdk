@@ -1,6 +1,8 @@
 
 # Web Merchant API 
 
+The Web Merchant API SDK is written in JavaScript. It can be included on any Website by following a few simple steps The Web Merchant API enables distributors to get details of banks and to invoke the bank apps using the SDK. The Web Merchant API SDK should be used alongside the Web Merchant API Implementation Guide documentation that is available separately to Participants.
+
 ### Document History
 
 | Version  | Date      | Summary of Changes |
