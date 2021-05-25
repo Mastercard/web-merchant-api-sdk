@@ -15,36 +15,37 @@ limitations under the License.
 */
 
 window.zappMerchantApi = window.zappMerchantApi || {};
-var cdnUrl = "https://zts3.co.uk/merchantApiCdnFiles/banks.json"; // CDN location to fetch the CFI logos
+const cdnUrl = "https://zts3.co.uk/merchantApiCdnFiles/sbibanks"; // CDN location to fetch the CFI logos
 
 zappMerchantApi.cfiDetail = {}; // Object containing CFI id, name and logo
 cfiMetaDataList = {}; // CFI metadata object
 
 /* Function to read JSON file from CDN and store CFI details in zapp objects*/
 zappMerchantApi.getCfiDetails = new Promise(function (resolve, reject) {
-  
-    var bankJson = $.getJSON(cdnUrl)
-      .done(function (data) {
-        zappMerchantApi.cfiCount = data.length;
-        for (i = 0; i < zappMerchantApi.cfiCount; i++) {
-          cfiJsonObj = {};
-          cfiJsonObj.cfiUniqueId = data[i].cfiUniqueId;
-          cfiJsonObj.cfiName = data[i].cfiName;
-          cfiJsonObj.cfiLogo = data[i].cfiLogo;
-          zappMerchantApi.cfiDetail[i] = cfiJsonObj;
-          cfiMetaDataList[data[i].cfiUniqueId] = data[i];
-        }
-        resolve(true);
-      })
-      .fail(function (jqObj, errTyp, errTxt) {
-        postError(
-          "S9998",
-          "An error has occurred while reading the JSON file. Error Type: " +
-            errTyp +
-            ". Error Text:" +
-            errTxt
-        );
-      });
+  fetch(cdnUrl)
+    .then(function (response) {
+      if (response.status !== 200) {
+        postError("MC1001", "Technical error occurred. " + response.status);
+        return;
+      }
+      return response.text();
+    })
+    .then(function (text) {
+      let decodedRes = JSON.parse(atob(text));
+      zappMerchantApi.cfiCount = decodedRes.length;
+      for (let i = 0; i < zappMerchantApi.cfiCount; i++) {
+        cfiJsonObj = {};
+        cfiJsonObj.cfiUniqueId = decodedRes[i].cfiUniqueId;
+        cfiJsonObj.cfiName = decodedRes[i].cfiName;
+        cfiJsonObj.cfiLogo = decodedRes[i].cfiLogo;
+        zappMerchantApi.cfiDetail[i] = cfiJsonObj;
+        cfiMetaDataList[decodedRes[i].cfiUniqueId] = decodedRes[i];
+      }
+      resolve(true);
+    })
+    .catch(function (err) {
+      postError("MC1002", " Technical error occurred. " + err);
+    });
 });
 
 /* Function to invoke the banking app*/
@@ -65,7 +66,7 @@ zappMerchantApi.invokeApp = function (cfiId, aptrId, productType) {
     } else if (typeof cfiMetaDataList[cfiId] == "undefined") {
       throw new Error("S1007");
     } else {
-      appUrl =
+      let appUrl =
         cfiMetaDataList[cfiId].cfiUniversalLink +
         "?aptrId=" +
         aptrId +
@@ -97,7 +98,7 @@ zappMerchantApi.invokeApp = function (cfiId, aptrId, productType) {
         postError(e.message, "No data present for CFI Id");
         break;
       default:
-        postError("S9997", "Unknown error has occured");
+        postError("MC1004", "Technical error occurred");
         break;
     }
   }
